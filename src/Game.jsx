@@ -3,62 +3,54 @@ import './Game.css';
 import { VscCircleLarge } from "react-icons/vsc";
 import { VscChromeClose } from "react-icons/vsc";
 import { VscBlank } from "react-icons/vsc";
+import { useEffect } from "react";
 
 
 export default function Game() {
 
     const [cells, setCells] = useState(new Array(9).fill(<VscBlank />));
 
-    const PlayerMove = "VscChromeClose";
-    const AiMove = <VscCircleLarge />;
-    const blackCell = <VscBlank />;
-
-    //Name cells
-    const cell1Name = cells[0].type.name;
-    const cell2Name = cells[1].type.name;
-    const cell3Name = cells[2].type.name;
-    const cell4Name = cells[3].type.name;
-    const cell5Name = cells[4].type.name;
-    const cell6Name = cells[5].type.name;
-    const cell7Name = cells[6].type.name;
-    const cell8Name = cells[7].type.name;
-    const cell9Name = cells[8].type.name;
-
-
-    //******************AI logic (imposible level)
-    if (cells[0].type.name == "VscChromeClose" || cells[1].type.name == "VscChromeClose" || cells[2].type.name == "VscChromeClose" || cells[3].type.name == "VscChromeClose" || cells[5].type.name == "VscChromeClose" || cells[6].type.name == "VscChromeClose" || cells[7].type.name == "VscChromeClose" || cells[8].type.name == "VscChromeClose" && cells[4].type.name == "VscBlank") {
-        function getRandomInt() {
-            return Math.floor(Math.random() * 9);
-        }
-
-        let aiRandomMove = getRandomInt();
-
-        while (cells[aiRandomMove].type.name !== "VscBlank") {
-            aiRandomMove = getRandomInt();
-        }
-
-        cells[aiRandomMove] = AiMove;
+    // Random number for AI move
+    function getRandomInt() {
+        return Math.floor(Math.random() * 9);
     }
+    let newAiRandomMove = getRandomInt();
 
+
+    //AI move
 
 
 
     //******************Player move
     const setValue = (index) => {
-        const newValue = <VscChromeClose />;
-        if (winlose1 || winlose2 || winlose3 || winlose4 || winlose5 || winlose6 || winlose7 || winlose8 || aiWinlose1 || aiWinlose2 || aiWinlose3 || aiWinlose4 || aiWinlose5 || aiWinlose6 || aiWinlose7 || aiWinlose8 || draw) {
-            setCells((prevArray) => {
-                return prevArray;
-            });
-        } else {
-            setCells((prevArray) => {
-                return prevArray.map((item, element) =>
-                    element === index ? prevArray[element] = newValue : item);
+        const PlayerValue = <VscChromeClose />;
+        const aiValue = <VscCircleLarge />;
 
-            });
-
+        if (winlose1 || winlose2 || winlose3 || winlose4 || winlose5 || winlose6 || winlose7 || winlose8 ||
+            aiWinlose1 || aiWinlose2 || aiWinlose3 || aiWinlose4 || aiWinlose5 || aiWinlose6 || aiWinlose7 || aiWinlose8 || draw) {
+            return;
         }
-    }
+
+        if (cells[index].type.name === "VscBlank") {
+            const updatedCells = [...cells];
+            updatedCells[index] = PlayerValue;
+            setCells(updatedCells);
+
+
+            const emptyCells = updatedCells.reduce((acc, cell, idx) => {
+                if (cell.type.name === "VscBlank" && cell.type.name !== "VscChromeClose" && cell.type.name !== "VscCircleLarge") {
+                    acc.push(idx);
+                }
+                return acc;
+            }, []);
+
+            if (emptyCells.length > 0) {
+                const randomEmptyCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+                updatedCells[randomEmptyCell] = aiValue;
+                setCells(updatedCells);
+            }
+        }
+    };
 
     const restart = () => {
         const blank = <VscBlank />;
@@ -123,118 +115,7 @@ export default function Game() {
                     </div>
                 ))}
             </div>
+
         </div>
     );
 }
-
-
-
-
-
-
-//first move cell 1
-// if (cells[0].type.name == "VscChromeClose" || cells[1].type.name == "VscChromeClose" || cells[2].type.name == "VscChromeClose" || cells[3].type.name == "VscChromeClose" || cells[5].type.name == "VscChromeClose" || cells[6].type.name == "VscChromeClose" || cells[7].type.name == "VscChromeClose" || cells[8].type.name == "VscChromeClose" && cells[4].type.name == "VscBlank") {
-//     cells[4] = <VscCircleLarge />
-//     // second move on cell 2
-//     if (cells[0].type.name == "VscChromeClose" && cells[1].type.name == "VscChromeClose") {
-//         cells[2] = <VscCircleLarge />
-//         if (cells[6].type.name == "VscChromeClose") {
-//             cells[3] = <VscCircleLarge />
-//         } else if (cells[3].type.name == "VscChromeClose" || cells[5].type.name == "VscChromeClose" || cells[7].type.name == "VscChromeClose" || cells[8].type.name == "VscChromeClose") {
-//             cells[6] = <VscCircleLarge />
-//         }
-//         if (cells[0].type.name == "VscChromeClose" && cells[1].type.name == "VscChromeClose" && cells[6].type.name == "VscChromeClose" && cells[5].type.name == "VscChromeClose") {
-//             cells[7] = <VscCircleLarge />
-//         }
-//         if (cells[0].type.name == "VscChromeClose" && cells[1].type.name == "VscChromeClose" && cells[6].type.name == "VscChromeClose" && cells[7].type.name == "VscChromeClose" && cells[8].type.name == "VscBlank") {
-//             cells[5] = <VscCircleLarge />
-//         }
-//         if (cells[0].type.name == "VscChromeClose" && cells[1].type.name == "VscChromeClose" && cells[6].type.name == "VscChromeClose" && cells[8].type.name == "VscChromeClose" && cells[7].type.name == "VscBlank") {
-//             cells[5] = <VscCircleLarge />
-//         }
-//     }
-//     //second move cell 3
-//     if (cells[0].type.name == "VscChromeClose" && cells[2].type.name == "VscChromeClose") {
-//         cells[1] = <VscCircleLarge />
-//         if (cells[7].type.name == "VscChromeClose") {
-//             cells[8] = <VscCircleLarge />
-//         } else if (cells[3].type.name == "VscChromeClose" || cells[5].type.name == "VscChromeClose" || cells[6].type.name == "VscChromeClose" || cells[8].type.name == "VscChromeClose") {
-//             cells[7] = <VscCircleLarge />
-//         }
-//         if ((cells[3].type.name == "VscChromeClose" && cells[5].type.name == "VscBlank" && cells[6].type.name == "VscBlank" && cells[8].type.name == "VscCircleLarge") || (cells[5].type.name == "VscChromeClose" && cells[3].type.name == "VscBlank" && cells[6].type.name == "VscBlank" && cells[8].type.name == "VscCircleLarge")) {
-//             cells[6] = <VscCircleLarge />
-//         }
-//         if (cells[6].type.name == "VscChromeClose" && cells[5].type.name == "VscBlank" && cells[3].type.name == "VscBlank" && cells[8].type.name == "VscCircleLarge") {
-//             cells[3] = <VscCircleLarge />
-//         }
-//     }
-// }
-
-
-// if (cell1Name === PlayerMove || cell2Name === PlayerMove || cell3Name === PlayerMove || cell4Name === PlayerMove || cell6Name === PlayerMove || cell7Name === PlayerMove || cell8Name === PlayerMove || cell9Name === PlayerMove) {
-//     cells[4] = AiMove;
-//     // 1-2
-//     if ((cell1Name === PlayerMove && cell2Name === PlayerMove)) {
-//         cells[2] = AiMove;
-//     }
-//     //2-3
-//     if ((cell2Name === PlayerMove && cell3Name === PlayerMove)) {
-//         cells[0] = AiMove;
-//     }
-//     //1-4
-//     if ((cell1Name === PlayerMove && cell4Name === PlayerMove)) {
-//         cells[6] = AiMove;
-//     }
-//     //3-6
-//     if ((cell3Name === PlayerMove && cell6Name === PlayerMove)) {
-//         cells[8] = AiMove;
-//     }
-//     //1-5
-//     if ((cell1Name === PlayerMove && cell5Name === PlayerMove)) {
-//         cells[8] = AiMove;
-//     }
-//     //3-5
-//     if ((cell3Name === PlayerMove && cell5Name === PlayerMove)) {
-//         cells[6] = AiMove;
-//     }
-//     //7-5
-//     if ((cell7Name === PlayerMove && cell5Name === PlayerMove)) {
-//         cells[2] = AiMove;
-//     }
-//     //9-5
-//     if ((cell9Name === PlayerMove && cell5Name === PlayerMove)) {
-//         cells[0] = AiMove;
-//     }
-//     //7-4
-//     if ((cell7Name === PlayerMove && cell4Name === PlayerMove)) {
-//         cells[0] = AiMove;
-//     }
-//     //9-6
-//     if ((cell9Name === PlayerMove && cell6Name === PlayerMove)) {
-//         cells[2] = AiMove;
-//     }
-//     //7-8
-//     if ((cell7Name === PlayerMove && cell8Name === PlayerMove)) {
-//         cells[8] = AiMove;
-//     }
-//     //8-9
-//     if ((cell8Name === PlayerMove && cell9Name === PlayerMove)) {
-//         cells[6] = AiMove;
-//     }
-//     //4-5
-//     if ((cell4Name === PlayerMove && cell5Name === PlayerMove)) {
-//         cells[5] = AiMove;
-//     }
-//     //5-6
-//     if ((cell5Name === PlayerMove && cell6Name === PlayerMove)) {
-//         cells[3] = AiMove;
-//     }
-//     //2-5
-//     if ((cell2Name === PlayerMove && cell5Name === PlayerMove)) {
-//         cells[2] = AiMove;
-//     }
-//     //8-5
-//     if ((cell8Name === PlayerMove && cell5Name === PlayerMove)) {
-//         cells[1] = AiMove;
-//     }
-// }
