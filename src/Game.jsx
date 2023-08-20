@@ -19,7 +19,6 @@ export default function Game() {
                 updatedCells[index] = <VscChromeClose />;
                 setCells(updatedCells);
             }
-
         }
     };
 
