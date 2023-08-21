@@ -101,8 +101,8 @@ export default function Game() {
                 </div>
                 <div className="animationForWinner">
                     {(winlose1 || winlose2 || winlose3 || winlose4 || winlose5 || winlose6 || winlose7 || winlose8) && <Player src={'../animations/youwin.json'} className="player" autoplay loop />}
-                    {(aiWinlose1 || aiWinlose2 || aiWinlose3 || aiWinlose4 || aiWinlose5 || aiWinlose6 || aiWinlose7) && <Player src={'../animations/youlose.json'} className="player2" autoplay loop />}
-                    {draw}
+                    {(aiWinlose1 || aiWinlose2 || aiWinlose3 || aiWinlose4 || aiWinlose5 || aiWinlose6 || aiWinlose7) && (<Player src={'../animations/youlose.json'} className="player2" autoplay loop />)}
+                    {draw && <Player src={'../animations/draw.json'} className="player3" autoplay loop />}
                 </div>
                 <div className="aiCount">
                     AI Score : <div style={{ colorScheme: 'light' | 'dark' | null }}>{aiCount}</div>
