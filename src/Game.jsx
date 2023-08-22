@@ -4,9 +4,9 @@ import { VscCircleLarge } from "react-icons/vsc";
 import { VscChromeClose } from "react-icons/vsc";
 import { VscBlank } from "react-icons/vsc";
 import { Player } from '@lottiefiles/react-lottie-player';
-import youwinAnimation from "../public/animations/youwin.json";
-import youloseAnimation from "../public/animations/youlose.json";
-import drawAnimation from "../public/animations/draw.json";
+import youwinAnimation from "./animations/youwin.json";
+import youloseAnimation from "./animations/youlose.json";
+import drawAnimation from "./animations/draw.json";
 
 export default function Game() {
 
