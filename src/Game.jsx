@@ -97,7 +97,7 @@ export default function Game() {
         <div className="allContent">
             <div className="TopInfo">
                 <div className="PlayerCount">
-                    Player Score <div style={{ colorScheme: 'light' | 'dark' | null }}>{playerCount}</div>
+                    Player score <div style={{ colorScheme: 'light' | 'dark' | null }}>{playerCount}</div>
                 </div>
 
                 <div className="aiCount">
@@ -105,12 +105,9 @@ export default function Game() {
                 </div>
             </div>
             <div className="animationForWinner">
-                {(winlose1 || winlose2 || winlose3 || winlose4 || winlose5 || winlose6 || winlose7 || winlose8) && (
-                    <>
-                        <Player src={'../animations/youwin.json'} className="player" autoplay loop />
-                    </>
-                )}
-                {(aiWinlose1 || aiWinlose2 || aiWinlose3 || aiWinlose4 || aiWinlose5 || aiWinlose6 || aiWinlose7) && (
+                {(winlose1 || winlose2 || winlose3 || winlose4 || winlose5 || winlose6 || winlose7 || winlose8) && (<Player src={'../animations/youwin.json'} className="player" autoplay loop />)}
+
+                {(aiWinlose1 || aiWinlose2 || aiWinlose3 || aiWinlose4 || aiWinlose5 || aiWinlose6 || aiWinlose7 || aiWinlose8) && (
                     <>
                         <Player src={'../animations/youlose.json'} className="player2" autoplay loop />
                         You are lose...
