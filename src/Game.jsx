@@ -4,6 +4,9 @@ import { VscCircleLarge } from "react-icons/vsc";
 import { VscChromeClose } from "react-icons/vsc";
 import { VscBlank } from "react-icons/vsc";
 import { Player } from '@lottiefiles/react-lottie-player';
+import youwinAnimation from "../public/animations/youwin.json";
+import youloseAnimation from "../public/animations/youlose.json";
+import drawAnimation from "../public/animations/draw.json";
 
 export default function Game() {
 
@@ -105,18 +108,18 @@ export default function Game() {
                 </div>
             </div>
             <div className="animationForWinner">
-                {(winlose1 || winlose2 || winlose3 || winlose4 || winlose5 || winlose6 || winlose7 || winlose8) && (<Player src={'../public/animations/youwin.json'} className="player" autoplay loop />)}
+                {(winlose1 || winlose2 || winlose3 || winlose4 || winlose5 || winlose6 || winlose7 || winlose8) && (<Player src={youwinAnimation} className="player" autoplay loop />)}
 
                 {(aiWinlose1 || aiWinlose2 || aiWinlose3 || aiWinlose4 || aiWinlose5 || aiWinlose6 || aiWinlose7 || aiWinlose8) && (
                     <>
-                        <Player src={'../public/animations/youlose.json'} className="player2" autoplay loop />
+                        <Player src={youloseAnimation} className="player2" autoplay loop />
                         You are lose...
                     </>
                 )
                 }
                 {draw && (
                     <>
-                        <Player src={'../public/animations/draw.json'} className="player3" autoplay loop />
+                        <Player src={drawAnimation} className="player3" autoplay loop />
                         Draw!
                     </>
                 )}
