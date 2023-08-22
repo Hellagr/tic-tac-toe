@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useColorScheme } from "react";
+import React, { useEffect, useState } from "react";
 import './Game.css';
 import { VscCircleLarge } from "react-icons/vsc";
 import { VscChromeClose } from "react-icons/vsc";
