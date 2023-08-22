@@ -20,17 +20,11 @@
     font-size: 64px;
 }
 
-.button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 3rem;
-}
-
 .StyleGame {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     margin: 0 auto;
+    padding-top: 3rem;
 }
 
 .cell {
@@ -60,24 +54,15 @@
     border-bottom: 5px solid orange;
 }
 
-.TopInfo {
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 4rem;
-    font-size: 60px;
-}
-
-.animationForWinner {
-    height: 20px;
-    font-size: large;
-}
-
 .allContent {
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    width: 50rem;
-    margin-top: -10rem;
+    margin-bottom: 10rem;
+}
+
+.TopInfo {
+    display: flex;
+
 }
 
 .PlayerCount {
@@ -90,21 +75,44 @@
     font-size: 30px;
 }
 
-.player {
-    display: flex;
+.animationForWinner {
+    height: 7rem;
+    overflow: hidden;
+}
 
-    width: 20rem;
+.button {
+    margin: 1rem;
+}
+
+.player {
+    padding-top: 2rem;
+    width: 12rem;
 }
 
 .player2 {
-    display: flex;
     width: 5rem;
 }
 
 .player3 {
-    display: flex;
-    width: 10rem;
-    font-weight: bold;
-    color: navy;
-    content: "Reference ";
+    padding-bottom: 0px;
+    width: 5rem;
+}
+
+@media (max-width: 768px) {
+    .allContent {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+
+
+    .PlayerCount {
+        width: 10rem;
+        font-size: 25px;
+    }
+
+    .aiCount {
+        width: 10rem;
+        font-size: 25px;
+    }
 }
