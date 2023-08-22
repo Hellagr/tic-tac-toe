@@ -105,18 +105,18 @@ export default function Game() {
                 </div>
             </div>
             <div className="animationForWinner">
-                {(winlose1 || winlose2 || winlose3 || winlose4 || winlose5 || winlose6 || winlose7 || winlose8) && (<Player src={'../animations/youwin.json'} className="player" autoplay loop />)}
+                {(winlose1 || winlose2 || winlose3 || winlose4 || winlose5 || winlose6 || winlose7 || winlose8) && (<Player src={'../public/animations/youwin.json'} className="player" autoplay loop />)}
 
                 {(aiWinlose1 || aiWinlose2 || aiWinlose3 || aiWinlose4 || aiWinlose5 || aiWinlose6 || aiWinlose7 || aiWinlose8) && (
                     <>
-                        <Player src={'../animations/youlose.json'} className="player2" autoplay loop />
+                        <Player src={'../public/animations/youlose.json'} className="player2" autoplay loop />
                         You are lose...
                     </>
                 )
                 }
                 {draw && (
                     <>
-                        <Player src={'../animations/draw.json'} className="player3" autoplay loop />
+                        <Player src={'../public/animations/draw.json'} className="player3" autoplay loop />
                         Draw!
                     </>
                 )}
